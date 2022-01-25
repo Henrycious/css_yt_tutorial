@@ -1,0 +1,177 @@
+/* 
+Primary Font: Lato
+Secondary Font: Roberto
+font-family: 'Lato', sans-serif;
+font-family: 'Roboto Condensed', sans-serif;
+
+
+Color-Sceme: 
+    Dark blue:      rgb(70,140,244)
+    lighter blue:   rgb(190,210,255)
+
+    Bold Orange:    rgb(230,160,70)
+    lighter Orange  rgb(255,227,191)
+
+*/
+
+:root {
+    --r: 30;
+    --g: 40;
+    --b: 70;
+    --text-color: rgb(var(--r), var(--g), var(--b));
+    --header-height: 5rem;
+    counter-reset: headings;
+}
+
+.content {
+    animation-name: fade-in;
+    animation-duration: 2s;
+}
+
+.sidebar {
+    animation-name: fade-in;
+    animation-duration: 2s;
+}
+
+img {
+    width: 400px;
+    height: 200px;
+    /* outline: auto; */
+    will-change: transform;
+    transition: transform 500ms, opacity 400ms;
+}
+
+img:hover {
+    transition: transform 250ms;
+    transform: scale(1.2);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+body {
+    position: relative;
+    color: var(--text-color);
+    background: rgba(190, 209, 255, 0.514);
+    /* scroll-padding-top: var(--header-height); */
+    padding-top: calc(var(--header-height) * 1.5);
+}
+
+iframe {
+    width: 100%;
+    aspect-ratio: 16/9;
+}
+
+#main {
+    display: grid;
+    grid-template-columns: 70% 30%;
+    grid-gap: 5rem;
+    width: clamp(200px, 100%, 2000px);
+    /*min, preferred, max*/
+}
+
+p {
+    font-family: 'Lato', sans-serif;
+}
+
+li {
+    font-family: 'Lato', sans-serif;
+}
+
+a {
+    font-family: 'Lato', sans-serif;
+}
+
+h1 {
+    counter-increment: headings;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+h1::before {
+    content: counter(headings);
+    margin-right: 1rem;
+}
+
+h2 {
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+.sidebar {
+    background: rgb(255, 227, 191);
+}
+
+.subtitle {}
+
+.image-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+
+/* Every image inside the image-grid*/
+
+.image-grid>img {
+    margin: 2rem;
+}
+
+#image-1 {
+    float: right;
+    margin: 15px;
+    width: 40%;
+    aspect-ratio: 16/9;
+}
+
+#header-1 {
+    z-index: 1;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: var(--header-height);
+    background: #555;
+    color: #f1f1f1;
+}
+
+#header-text {
+    margin: 1rem 2rem;
+}
+
+.post {
+    border: 2px solid rgb(230, 160, 70);
+    margin: 10px;
+}
+
+.post-title {
+    margin-left: 5px;
+}
+
+.post-text {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.post>a {
+    margin-left: 5px;
+    margin-right: 5px;
+    text-decoration: none;
+    color: rgb(70, 140, 244);
+    transition: 0.3s color ease-in-out;
+}
+
+.post>a:hover {
+    color: rgb(190, 210, 255);
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+
+/* There's this obscure CSS property called scroll-padding-top. 
+When you have a sticky / fixed header, and you click an anchor link, it gets hidden under the sticky header. 
+To avoid this annoying bug, just give your body element scroll-padding-top equal to the header height. 
+Along with scroll-behaviour: smooth, this will make it so that when you click an anchor link, 
+it'll scroll to it, such that it starts right beneath the header instead of hidden under it, which is the intended behaviour!*/
